@@ -213,6 +213,15 @@
         - not containerized_deployment | bool
         - mgr_group_name in group_names
 
+    - name: Restart ceph-mgr daemon
+      tags: with_pkg
+      systemd:
+        name: "ceph-mgr@{{ ansible_facts['hostname'] }}"
+        state: restarted
+      when:
+        - not containerized_deployment | bool
+        - mgr_group_name in group_names
+
     - name: get current fsid
       command: "{{ ceph_cmd }} fsid"
       register: current_fsid
