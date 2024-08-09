@@ -192,7 +192,7 @@
     - name: install cephadm requirements
       tags: with_pkg
       package:
-        name: ['python3', 'lvm2']
+        name: ['python3', 'python3-asyncssh', 'lvm2']
       register: result
       until: result is succeeded
 
